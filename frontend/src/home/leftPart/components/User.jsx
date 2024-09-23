@@ -4,17 +4,26 @@ import useConversation from '../../../zusted/useConverstion.js'
 import { useSocketContext } from "../../../context/socketContext.jsx";
 
 
-const User = ({ user }) => {
+const User = ({ user , showMd ,setShowMd}) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const isSelected = selectedConversation?._id === user._id;
 const { socket, onlineUsers } = useSocketContext();
 const isOnline = onlineUsers.includes(user._id)
 const userFirstname = user?.name.charAt(0).toUpperCase();
 // console.log(userFirstname)
+console.log(showMd)
+ const hnadleSeletedUser = ()=>{
+
+  setSelectedConversation(user);
+  setShowMd(false)
+ 
+
+ }
+
   return (
     <>
       {(
-      <div  onClick={()=>setSelectedConversation(user)} className={`hover:bg-slate-600 duration-30 ${isSelected?" bg-slate-700":""}`}>
+      <div  onClick={hnadleSeletedUser}  className={`hover:bg-slate-600 duration-30 ${isSelected?" bg-slate-700":""}`}>
           <div className="flex space-x-4 px-8 py-3 hover:bg-slate-700 duration-300 cursor-pointer">
           <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 h-12 rounded-full border relative">

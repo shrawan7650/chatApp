@@ -3,10 +3,10 @@ import User from "./User";
 import useGetAllUser from "../../../context/useGetAllUser";
 import Spinner from "../../../Spinner/Spinner";
 
-const Users = () => {
+const Users = ({ showMd ,setShowMd}) => {
 
 const[alluser,loader] = useGetAllUser();
-// console.log(alluser,loader)
+console.log(alluser,loader)
 if (loader) {
   return <Spinner />;
 }
@@ -22,7 +22,7 @@ if (loader) {
       style={{ maxHeight: "calc(84vh - 10vh)" }}
     >
    {alluser?.map((user, index) => (
-          <User key={index} user={user} loader={loader} />
+          <User key={index} user={user} loader={loader}  showMd={showMd} setShowMd={setShowMd} />
         ))}
     </div>
   </div>

@@ -4,7 +4,7 @@ import Logout from "./components/Logout";
 import Users from "./components/Users";
 
 // eslint-disable-next-line react/prop-types
-const LeftPart = ({ showMd }) => {
+const LeftPart = ({ showMd ,setShowMd}) => {
   return (
     <>
       {/* // laptop */}
@@ -25,8 +25,9 @@ const LeftPart = ({ showMd }) => {
         } bg-slate-900 text-white h-full flex flex-col gap-1 z-30`}
       >
         <Search />
-        <Users />
+        <Users showMd={showMd} setShowMd={setShowMd} />
         <Logout />
+       
       </div>
     </>
   );

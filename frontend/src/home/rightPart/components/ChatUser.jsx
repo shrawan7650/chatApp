@@ -17,9 +17,9 @@ const ChatUser = () => {
       setIsOnline(status);
     }
   }, [onlineUsers, selectedConversation]);
-  console.log(selectedConversation);
+  // console.log(usersData);
   const userFirstname = selectedConversation?.name.charAt(0).toUpperCase();
-  console.log(userFirstname)
+  // console.log(userFirstname)
   return (
     <div className=" z-10">
       {loader ? (
@@ -61,7 +61,7 @@ const ChatUser = () => {
               {isOnline ? "Online" : "Offline"}
             </span>
           </div>
-          {/* <p className=" absolute right-10 "><IoMdClose/></p> */}
+          {/* <p className=" absolute right-10 ">{usersData?.name}</p> */}
         </div>
       )}
     </div>

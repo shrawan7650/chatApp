@@ -7,11 +7,12 @@ import Login from "./controller/Login";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./context/authContext";
 import UserProfile from "./controller/UserProfile";
+import CallSystem from "./controller/callSystem/CallSystem";
 
 function App() {
   const { isLogged } = useAuth();
 const [showMd, setShowMd ] = useState(false);
-console.log(showMd)
+// console.log(showMd)
 
   return (
     <>
@@ -32,6 +33,10 @@ console.log(showMd)
         <Route
           path="/login"
           element={isLogged ? <Navigate to="/" /> : <Login />}
+        />
+          <Route
+          path="/call"
+          element={ <CallSystem />}
         />
          <Route
           path="/profile"
