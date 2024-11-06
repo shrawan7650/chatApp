@@ -1,29 +1,40 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../context/authContext';
-import { CgArrowLeft, CgBackspace } from 'react-icons/cg';
-import { FaBackward } from 'react-icons/fa';
+import { CgArrowLeft } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
+import './UserProfile.css'; // Ensure to include a custom CSS file
 
 const UserProfile = () => {
   const { isLogged, usersData, loader } = useAuth();
+  console.log("useData",usersData)
 
- 
   return (
-    <>
-   <Link to="/">   <h1 className='ml-8 mt-10'><CgArrowLeft className=' text-3xl'/></h1></Link>
-    <div className=' flex justify-center h-screen items-center'>
-      {loader && <p>Loading...</p>}
-      {isLogged ? (
-        <div className='border p-5 rounded-md'>
-          <p>User Profile:</p>
-          <p>Name: {usersData ? usersData?.name : 'Loading...'}</p>
-          <p>Email: {usersData ? usersData?.email : 'Loading...'}</p>
-          <p>Created At: {usersData ? new Date(usersData?.createdAt).toLocaleString() : 'Loading...'}</p>
+    <div className="user-profile-container">
+      <Link to="/" className="back-link">
+        <CgArrowLeft className="back-icon" />
+      </Link>
+
+      <div className="profile-wrapper">
+        <div className="profile-info">
+          <h2 className="profile-title">User Profile</h2>
+          {loader ? (
+            <p className="loading-text">Loading...</p>
+          ) : isLogged ? (
+            <div className="profile-card">
+              <p><strong>Name:</strong> {usersData ? usersData?.name : 'Loading...'}</p>
+              <p><strong>Email:</strong> {usersData ? usersData?.email : 'Loading...'}</p>
+              <p><strong>Created At:</strong> {usersData ? new Date(usersData?.createdAt).toLocaleString() : 'Loading...'}</p>
+            </div>
+          ) : (
+            <p className="login-prompt">Please login</p>
+          )}
         </div>
-      ) : (
-        <p>Please login</p>
-      )}
-    </div></>
+
+        <div className="profile-background">
+          <div className="animated-background"></div>
+        </div>
+      </div>
+    </div>
   );
 };
 
